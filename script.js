@@ -1,7 +1,14 @@
 let numberToGuess = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
 
-document.getElementById('guessButton').addEventListener('click', function() {
+document.getElementById('guessButton').addEventListener('click', checkGuess);
+document.getElementById('guessInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        checkGuess();
+    }
+});
+
+function checkGuess() {
     const userGuess = parseInt(document.getElementById('guessInput').value);
     attempts += 1;
 
@@ -17,7 +24,7 @@ document.getElementById('guessButton').addEventListener('click', function() {
     }
 
     document.getElementById('result').textContent = message;
-});
+}
 
 function startNewGame() {
     numberToGuess = Math.floor(Math.random() * 100) + 1;
